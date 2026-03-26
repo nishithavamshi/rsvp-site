@@ -120,7 +120,7 @@
       if (moveX < 0) moveX = 0;
       if (moveX > maxMove) moveX = maxMove;
       
-      handle.style.transform = translateX(${moveX}px);
+      handle.style.transform = 'translateX(${moveX}px)';
 
       // Trigger navigation if reached 90% of the way
       if (moveX >= maxMove * 0.9) {
