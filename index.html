@@ -1,148 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Incoming Call</title>
-  <style>
-    * { box-sizing: border-box; }
-    
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden; /* Prevents accidental scrolling */
-      background-color: #000;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sangeeth Invitation</title>
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+  }
+
+  /* BACKGROUND IMAGE */
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: black;
+  }
+
+  /* OVERLAY */
+  .screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(0,0,0,0.2); 
+  }
+
+  .top {
+    margin-top: 40px;
+  }
+
+  .caller {
+    font-size: 30px;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+
+  .subtext {
+    font-size: 16px;
+    margin-top: 8px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  }
+
+  /* SLIDER CONTAINER */
+  .slider-container {
+    width: 280px;
+    max-width: 90%;
+    height: 60px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 40px;
+    position: absolute;
+    bottom: calc(80px + env(safe-area-inset-bottom)); /* 👈 FIXED */
+    overflow: hidden;
+  }
+
+  .slider-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .slider {
+    height: 60px;
+    width: 60px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: grab;
+    transition: background 0.2s;
+  }
+
+  .slider:active {
+    cursor: grabbing;
+    background: #f1f1f1;
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .caller {
+      font-size: 24px;
     }
 
-    /* Background Image setup */
-    .bg-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('1774463614783.jpeg') no-repeat center center;
-      background-size: cover;
-      z-index: 1;
+    .slider-container {
+      height: 55px;
     }
 
-    /* Bottom UI Area */
-    .bottom-ui {
-      position: absolute;
-      bottom: 50px; /* Adjust based on phone chin/home bar */
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 2;
+    .slider {
+      height: 55px;
+      width: 55px;
     }
+  }
 
-    /* Simple Slider Container */
-    .slider-track {
-      width: 80%;
-      max-width: 300px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      border-radius: 50px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 5px;
-    }
-
-    .slider-handle {
-      width: 50px;
-      height: 50px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      position: absolute;
-      left: 5px;
-      transition: transform 0.1s ease-out;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-
-    .slider-text {
-      width: 100%;
-      text-align: center;
-      color: white;
-      font-size: 16px;
-      pointer-events: none; /* Let touch pass through to handle */
-      opacity: 0.8;
-    }
-
-    .icon-phone {
-      width: 25px;
-      filter: invert(1); /* Makes black icon white */
-    }
-
-  </style>
+</style>
 </head>
+
 <body>
 
-  <div class="bg-container"></div>
+<!-- BACKGROUND IMAGE -->
+<div class="background">
+  <img src="cover.jpeg" alt="Couple Photo">
+</div>
 
-  <div class="bottom-ui">
-    <div class="slider-track" id="track">
-      <div class="slider-text">Slide to Answer →</div>
-      <div class="slider-handle" id="handle">
-        <img src="https://cdn-icons-png.flaticon.com/512/483/483951.png" class="icon-phone" alt="phone">
-      </div>
-    </div>
+<!-- UI -->
+<div class="screen">
+  <div class="top">
+    <div class="caller">💍 Nishi ❤️ Vamshi</div>
+    <div class="subtext">Incoming Call...</div>
   </div>
 
-  <script>
-    const handle = document.getElementById('handle');
-    const track = document.getElementById('track');
-    let isDragging = false;
-    let startX = 0;
+  <div class="slider-container">
+    <div class="slider-text">Slide to Answer →</div>
+    <div class="slider" id="slider">📞</div>
+  </div>
+</div>
 
-    // Logic for sliding
-    const onStart = (e) => {
-      isDragging = true;
-      startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    };
+<script>
+  const slider = document.getElementById("slider");
+  const container = document.querySelector(".slider-container");
 
-    const onMove = (e) => {
-      if (!isDragging) return;
-      const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-      let moveX = currentX - startX;
-      
-      const maxMove = track.offsetWidth - handle.offsetWidth - 10;
-      
-      if (moveX < 0) moveX = 0;
-      if (moveX > maxMove) moveX = maxMove;
-      
-      handle.style.transform = 'translateX(${moveX}px)';
+  let isDragging = false;
 
-      // Trigger navigation if reached 90% of the way
-      if (moveX >= maxMove * 0.9) {
-        window.location.href = "invite.html";
-      }
-    };
+  slider.addEventListener("mousedown", () => isDragging = true);
+  document.addEventListener("mouseup", () => isDragging = false);
 
-    const onEnd = () => {
-      isDragging = false;
-      // Snap back if not fully slid
-      handle.style.transition = 'transform 0.3s ease';
-      handle.style.transform = 'translateX(0px)';
-      setTimeout(() => handle.style.transition = '', 300);
-    };
+  document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
 
-    handle.addEventListener('mousedown', onStart);
-    handle.addEventListener('touchstart', onStart);
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('touchmove', onMove);
-    window.addEventListener('mouseup', onEnd);
-    window.addEventListener('touchend', onEnd);
-  </script>
+    let rect = container.getBoundingClientRect();
+    let x = e.clientX - rect.left - 30;
+
+    if (x < 0) x = 0;
+    if (x > rect.width - 60) x = rect.width - 60;
+
+    slider.style.left = x + "px";
+
+    if (x >= rect.width - 65) {
+      window.location.href = "invite.html";
+    }
+  });
+
+  // TOUCH SUPPORT
+  slider.addEventListener("touchstart", () => isDragging = true);
+  document.addEventListener("touchend", () => isDragging = false);
+
+  document.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+
+    let rect = container.getBoundingClientRect();
+    let x = e.touches[0].clientX - rect.left - 30;
+
+    if (x < 0) x = 0;
+    if (x > rect.width - 60) x = rect.width - 60;
+
+    slider.style.left = x + "px";
+
+    if (x >= rect.width - 65) {
+      window.location.href = "invite.html";
+    }
+  });
+</script>
 
 </body>
 </html>
