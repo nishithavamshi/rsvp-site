@@ -3,133 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sangeeth Invitation</title>
+<title>Call</title>
 
 <style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    overflow: hidden;
-  }
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+}
 
-  /* BACKGROUND IMAGE */
-  .background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
-  .background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background-color: black;
-  }
+.background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  /* OVERLAY */
-  .screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-    background: rgba(0,0,0,0.2); 
-  }
+.screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.25);
+}
 
-  .top {
-    margin-top: 40px;
-  }
+.top {
+  margin-top: 80px;
+}
 
-  .caller {
-    font-size: 30px;
-    font-weight: 500;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-  }
+.caller {
+  font-size: 28px;
+}
 
-  .subtext {
-    font-size: 16px;
-    margin-top: 8px;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-  }
+.subtext {
+  margin-top: 10px;
+}
 
-  /* SLIDER CONTAINER */
-  .slider-container {
-    width: 280px;
-    max-width: 90%;
-    height: 60px;
-    background: rgba(0,0,0,0.4);
-    border-radius: 40px;
-    position: absolute;
-    bottom: calc(80px + env(safe-area-inset-bottom)); /* 👈 FIXED */
-    overflow: hidden;
-  }
+.slider-container {
+  width: 280px;
+  height: 60px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 40px;
+  position: absolute;
+  bottom: calc(80px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-  .slider-text {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    line-height: 60px;
-    color: #fff;
-    font-size: 16px;
-  }
+.slider-text {
+  line-height: 60px;
+}
 
-  .slider {
-    height: 60px;
-    width: 60px;
-    background: white;
-    color: black;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    cursor: grab;
-    transition: background 0.2s;
-  }
-
-  .slider:active {
-    cursor: grabbing;
-    background: #f1f1f1;
-  }
-
-  /* MOBILE */
-  @media (max-width: 600px) {
-    .caller {
-      font-size: 24px;
-    }
-
-    .slider-container {
-      height: 55px;
-    }
-
-    .slider {
-      height: 55px;
-      width: 55px;
-    }
-  }
-
+.slider {
+  height: 60px;
+  width: 60px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND IMAGE -->
 <div class="background">
-  <img src="cover.jpeg" alt="Couple Photo">
+  <img src="cover.jpeg">
 </div>
 
-<!-- UI -->
 <div class="screen">
   <div class="top">
     <div class="caller">💍 Nishi ❤️ Vamshi</div>
@@ -143,49 +97,49 @@
 </div>
 
 <script>
-  const slider = document.getElementById("slider");
-  const container = document.querySelector(".slider-container");
+const slider = document.getElementById("slider");
+const container = document.querySelector(".slider-container");
 
-  let isDragging = false;
+let isDragging = false;
 
-  slider.addEventListener("mousedown", () => isDragging = true);
-  document.addEventListener("mouseup", () => isDragging = false);
+slider.addEventListener("mousedown", () => isDragging = true);
+document.addEventListener("mouseup", () => isDragging = false);
 
-  document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
 
-    let rect = container.getBoundingClientRect();
-    let x = e.clientX - rect.left - 30;
+  let rect = container.getBoundingClientRect();
+  let x = e.clientX - rect.left - 30;
 
-    if (x < 0) x = 0;
-    if (x > rect.width - 60) x = rect.width - 60;
+  if (x < 0) x = 0;
+  if (x > rect.width - 60) x = rect.width - 60;
 
-    slider.style.left = x + "px";
+  slider.style.left = x + "px";
 
-    if (x >= rect.width - 65) {
-      window.location.href = "invite.html";
-    }
-  });
+  if (x >= rect.width - 65) {
+    window.location.href = "invite.html";
+  }
+});
 
-  // TOUCH SUPPORT
-  slider.addEventListener("touchstart", () => isDragging = true);
-  document.addEventListener("touchend", () => isDragging = false);
+// mobile
+slider.addEventListener("touchstart", () => isDragging = true);
+document.addEventListener("touchend", () => isDragging = false);
 
-  document.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
+document.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
 
-    let rect = container.getBoundingClientRect();
-    let x = e.touches[0].clientX - rect.left - 30;
+  let rect = container.getBoundingClientRect();
+  let x = e.touches[0].clientX - rect.left - 30;
 
-    if (x < 0) x = 0;
-    if (x > rect.width - 60) x = rect.width - 60;
+  if (x < 0) x = 0;
+  if (x > rect.width - 60) x = rect.width - 60;
 
-    slider.style.left = x + "px";
+  slider.style.left = x + "px";
 
-    if (x >= rect.width - 65) {
-      window.location.href = "invite.html";
-    }
-  });
+  if (x >= rect.width - 65) {
+    window.location.href = "invite.html";
+  }
+});
 </script>
 
 </body>
