@@ -81,18 +81,21 @@
       <option>No</option>
     </select>
 
+<label>No. of guests attending?</label>
+<input 
+  type="number" 
+  name="guests" 
+  min="0" 
+  max="20" 
+  placeholder="Enter number of guests" 
+  required
+>
+
     <label>Meal Preference:</label>
     <select name="meal" required>
       <option value="" disabled selected>--Select--</option>
       <option>Veg</option>
       <option>Non-Veg</option>
-    </select>
-
-    <label>Bringing a Guest?</label>
-    <select name="guest" required>
-      <option value="" disabled selected>--Select--</option>
-      <option>No</option>
-      <option>Yes</option>
     </select>
 
     <label>Any message or note?</label>
