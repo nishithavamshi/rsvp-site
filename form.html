@@ -65,11 +65,14 @@
   <p><b>Address:</b> 4381 US-377, Aubrey, TX, 76227</p>
 
   <!-- FORM -->
-  <form method="POST" action="https://formspree.io/f/mdapkwor">
+  <form action="https://formspree.io/f/mdapkwor" method="POST">
 
-    <!-- Hidden fields for Formspree -->
+    <!-- Formspree Hidden Fields -->
     <input type="hidden" name="_subject" value="RSVP Submission">
-    <input type="hidden" name="_next" value="https://nishithavamshi.github.io/rsvp-site/thanks.html">
+    <input type="hidden" name="_redirect" value="https://nishithavamshi.github.io/rsvp-site/thanks.html">
+
+    <!-- Spam protection -->
+    <input type="text" name="_gotcha" style="display:none">
 
     <label>Your Name:</label>
     <input type="text" name="name" required>
@@ -81,15 +84,15 @@
       <option>No</option>
     </select>
 
-<label>No. of guests attending?</label>
-<input 
-  type="number" 
-  name="guests" 
-  min="0" 
-  max="20" 
-  placeholder="Enter number of guests" 
-  required
->
+    <label>No. of guests attending?</label>
+    <input 
+      type="number" 
+      name="guests" 
+      min="0" 
+      max="20" 
+      placeholder="Enter number of guests" 
+      required
+    >
 
     <label>Meal Preference:</label>
     <select name="meal" required>
