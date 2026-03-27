@@ -49,13 +49,18 @@ body, html {
 
 .slider-container {
   width: 280px;
+  max-width: 90%;
   height: 60px;
   background: rgba(0,0,0,0.4);
   border-radius: 40px;
   position: absolute;
-  bottom: calc(80px + env(safe-area-inset-bottom));
+
+  /* 👇 KEY FIX */
+  bottom: 18%;   /* instead of 80px */
+
   left: 50%;
   transform: translateX(-50%);
+  overflow: hidden;
 }
 
 .slider-text {
